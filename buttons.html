@@ -1,0 +1,46 @@
+<!-- Кнопки плагина, отображаются на сайтах -->
+
+<div id="th_main_wrap">
+	<!-- стили для кнопок плагина -->
+	<style>
+		#th_main_wrap {
+			position: fixed;
+			bottom: 0;
+			width: 100%;
+			z-index: 99999;
+		}
+		#th_buttons_header {
+			height: initial !important;
+			text-align: center;
+		}
+		#th_buttons_wrap {
+			display: none;
+		}
+		#th_buttons_wrap, #th_buttons_header {
+			width: 400px;
+			margin: 0 auto;
+			height: 100px;
+			outline: 1px solid red;
+		}
+	</style>
+
+	<!-- Скрипты только для визуального оформления блока кнопок -->
+	<script>
+
+	</script>
+
+	<div id="th_buttons_header">Скрыть/Показать</div>
+	<div id="th_buttons_wrap">
+		<div>SCAN</div>
+		<div>UP</div>
+		<div>DOWN</div>
+
+		<select>
+			<!--
+			<option> Список сайтов для скана </option>
+			-->
+			${0} <!-- Для замены в background.js -->
+		</select>
+	</div>
+
+</div>

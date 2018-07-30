@@ -1,0 +1,8 @@
+{
+	"item_wrapper" : ".inventory-wrapper",
+	"item_wrapper_index" : 2,
+	"item" : ".item",
+	"weapon" : ".weapon",
+	"name" : ".name",
+	"wear" : ".wear"
+}

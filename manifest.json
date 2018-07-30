@@ -22,17 +22,18 @@
 	"content_scripts" : [
 		{
 			"matches": ["*://*/*"],
-			"js": ["js/jQuery.js"],
+			"js": ["js/jQuery.js", "content.js"],
 			"css": [ "css/style.css" ],
 			"run_at": "document_end"
 		}
 	],
 	"background": {
-		"scripts": ["js/jQuery.js", "js/background.js"]
+		"scripts": ["js/jQuery.js", "js/async.js", "js/background.js"]
 	},
 	"web_accessible_resources": [
 		"/js/*",
-		"/css/*"
+		"/css/*",
+		"/icons/*"
 	],
     "browser_action": {
         "default_title": "TRANSFER HELPER",

@@ -1,0 +1,14 @@
+{
+	"set_buttons_interval" : 0.5,
+	"set_buttons_amount" : 1000,
+	"path" : "/sites/",
+	"sites" : [
+		{
+			"name" : "vgotrading.com",
+			"link" : "http://vgotrading.com",
+			"comission" : 7.5
+		}
+	],
+	"link_top" : 15,
+	"profit_top" : 50
+}
