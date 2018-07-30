@@ -72,6 +72,11 @@ function run() {
 
 	// добавим кнопки плагина на сайт
 	$('html').append(config.buttons);
+	// визуальные скрипты кнопок
+	$('#th_buttons_header').click(function() {
+		$('#th_cart_body').slideToggle();
+	});
+
 
 	// установим события
 	$( $(config.current.item_wrapper)[ config.current.item_wrapper_index - 1 ] ).on('click', '.th_opskins_link', function(event) {
@@ -92,6 +97,7 @@ function run() {
 		}, function(res) {
 			$(self).text('SCAN');
 
+			console.log(res);
 			if (res.result)
 				setPrices(res.items);	// успешный скан предметов
 			else
@@ -123,7 +129,7 @@ function setPrices(items) {
 		$(this).find('.th_price_wrap').remove();
 
 		// посчитаем данные что нам нужны
-		let item_name = getItemName($(this).find(config.current.weapon).text(), $(this).find(config.current.name).text(), $(this).find(config.current.wear).text());
+		let item_name = getItemName($(this));
 
 		// есть ли в скане цена нужного предмета
 		if (!items[ item_name ]) {
@@ -131,7 +137,7 @@ function setPrices(items) {
 		}
 
 		// получим цену предмета, на текущем сайте
-		let item_price = getPrice($(this).find(config.current.price).text());
+		let item_price = getPrice($(this));
 
 		// прибыль при депозите на сайт, и при выводе с сайта
 		let dep_profit = parseFloat( 100 - items[ item_name ].price * ( 100 + config.sites.find( site => site.name === window.location.hostname ).comission ) / item_price ).toFixed(2);
@@ -170,9 +176,9 @@ function setButtons() {
 
 	elements.each(function() {
 		$(this).addClass('th_added');	// чтобы предмет не выбирался повторно
-		let name = getItemName($(this).find(config.current.weapon).text(), $(this).find(config.current.name).text(), $(this).find(config.current.wear).text());
+		let name = getItemName($(this));
 
-		$(this).append('<a class="th_opskins_link" target="_blank" href="' + link.replace('${item}', name) + '" style="top: ' + config.link_top + '%; "><img src="' + config.opskins_logo + '"></a>');
+		$(this).append('<a class="th_opskins_link" target="_blank" href="' + link.replace('${item}', name) + '" style="top: ' + config.link_top + '%; left: ' + config.link_left + '%;"><img src="' + config.opskins_logo + '"></a>');
 	});
 
 	// запустить установку кнопок на предметы
@@ -181,20 +187,31 @@ function setButtons() {
 
 
 // создаётся полное название предмета
-function getItemName(weapon, name, wear) {
+function getItemName(element) {
 	// weapon - тип оружия, например: AWP, UMP-45, Tec-9
 	// name - название скина, например: Dragon Lore, Poison Target
 	// wear - поношенность оружия, например: FN, (FN), Factory New, (Factory New)
 
-	if (weapon != name)
-		return weapon.trim() + " | " + name.trim() + ( wears[ wear.toLowerCase().trim() ] ? wears[ wear.toLowerCase().trim() ] : "" );
-	else
-		return weapon.trim();
+	let reg = new RegExp("(?:http(?:s?):\/\/files.opskins.media\/file\/vgo-img\/item\/)([a-z0-9\-]+)(?:-300.png)", 'mi');
+	let matches = $(element).html().match(reg);
+
+	//если есть совпадение по регулярке, то запомнить его
+	if (matches)
+	{
+		let item_name = matches[1];	// получем такие данные famas-bristlecone-battle-scarred
+
+		// заменим качество предмета
+		item_name = item_name.replace(/-/g, ' ');
+
+		return item_name;
+	}
+	return undefined;
 }
 
 // возвращается цена предмета в центах
-function getPrice(price) {
+function getPrice(element) {
+	let price = $( $(element).find(config.current.price)[ config.current.price_index ? (config.current.price_index - 1) : 0 ] ).text();
 	// price - цена, например: $101.84
 
-	return (price.replace('$', '')  * 100);
+	return (price.replace('$', '').replace(',', '')  * 100);
 }

@@ -11,11 +11,17 @@
 			"comission" : 7.5
 		},
 		{
+			"name" : "trade.vgounbox.com",
+			"link" : "https://trade.vgounbox.com",
+			"comission" : 9.5
+		},
+		{
 			"name" : "opskins.com",
 			"link" : "http://opskins.com",
 			"comission" : 0
 		}
 	],
 	"link_top" : 15,
+	"link_left" : 10,
 	"profit_top" : 40
 }

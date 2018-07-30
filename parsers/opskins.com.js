@@ -11,6 +11,7 @@ $.ajax({
 
 		let items = {};
 		$.each(res, function(ind, val){
+			ind = ind.replace('(', '').replace(/[^a-zA-Z0-9\|]/g, ' ').replace('| ', '').toLowerCase().trim(); // преобразуем в нужный формат
 			items[ind] = {
 				price : val.price,		// цена предмета
 				count : val.quantity	// количество integer или string если (имеется/максимум)

@@ -1,6 +1,6 @@
 .th_opskins_link {
 	position: absolute;
-	left: 0;
+	z-index: 99999;
 }
 
 .th_opskins_link > img {
@@ -9,6 +9,8 @@
 }
 
 .th_price_wrap {
+	text-align: center;
+	z-index: 99999;
 	position: absolute;
 	left: 0;
 	width: 100%;
@@ -21,6 +23,7 @@
 	height: initial !important;
 	text-shadow: black 0.5px 0.5px 0, black -0.5px -0.5px 0, black -0.5px 0.5px 0, black 0.5px -0.5px 0;
     font-weight: bold;
+    font-size: 11px;
     text-shadow: 3px 1px 2px black;
 	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 	color: white;

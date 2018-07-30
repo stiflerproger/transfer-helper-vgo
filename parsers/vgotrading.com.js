@@ -8,14 +8,15 @@ $.ajax({
 
 		let items = {};
 		for (let i = 0, l = res.length; i < l; i++) {
-			if (!items[ res[i].name ]) {
-				items[ res[i].name ] = {
+			let name = res[i].name.replace('(', '').replace(/[^a-zA-Z0-9\|]/g, ' ').replace('| ', '').toLowerCase().trim(); // преобразуем в нужный формат
+			if (!items[ name ]) {
+				items[ name ] = {
 					count : 0
 				}
 			}
 
-			items[ res[i].name ].price = res[i].suggested_price_floor;
-			items[ res[i].name ].count++;
+			items[ name ].price = res[i].suggested_price_floor;
+			items[ name ].count++;
 
 		}
 

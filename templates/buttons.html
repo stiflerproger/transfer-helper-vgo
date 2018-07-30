@@ -11,36 +11,37 @@
 		}
 		#th_buttons_header {
 			height: initial !important;
-			text-align: center;
+			cursor: pointer;
 		}
 		#th_buttons_wrap {
-			/*display: none;*/
+			width: 500px;
+			text-align: center;
+		}
+		#th_buttons_header {
+			width: 100%;
 		}
 		#th_buttons_wrap, #th_buttons_header {
-			width: 400px;
+			background-color: white;
 			margin: 0 auto;
-			height: 100px;
-			outline: 1px solid red;
 		}
 	</style>
 
-	<!-- Скрипты только для визуального оформления блока кнопок -->
-	<script>
+	<div id="th_buttons_wrap" class="card">
+		<div id="th_buttons_header" class="card-header"><h6 class="my-0 font-weight-normal">Скрыть / Показать</h6></div>
+		<div id="th_cart_body" class="card-body" style="display: none;">
 
-	</script>
+			<div class="btn btn-sm btn-outline-secondary" id="th_scan">SCAN</div>
+			<div class="btn btn-sm btn-outline-secondary" id="th_up">UP</div>
+			<div class="btn btn-sm btn-outline-secondary" id="th_down">DOWN</div>
 
-	<div id="th_buttons_header">Скрыть/Показать</div>
-	<div id="th_buttons_wrap">
-		<div id="th_scan">SCAN</div>
-		<div id="th_up">UP</div>
-		<div id="th_down">DOWN</div>
-
-		<select id="th_select">
-			<!--
-			<option> Список сайтов для скана </option>
-			-->
-			${0} <!-- Для замены в background.js -->
-		</select>
+			<small class="text-muted">скан сайта:</small>
+			<select class="custom-select-sm" id="th_select">
+				<!--
+				<option> Список сайтов для скана </option>
+				-->
+				${0} <!-- Для замены в background.js -->
+			</select>
+		</div>
 	</div>
 
 </div>
