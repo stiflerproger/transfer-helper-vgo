@@ -1,14 +1,21 @@
 {
 	"set_buttons_interval" : 0.5,
 	"set_buttons_amount" : 1000,
-	"path" : "/sites/",
+	"sites_path" : "/sites/",
+	"parse_path" : "/parsers/",
+	"templates_path" : "/templates/",
 	"sites" : [
 		{
 			"name" : "vgotrading.com",
 			"link" : "http://vgotrading.com",
 			"comission" : 7.5
+		},
+		{
+			"name" : "opskins.com",
+			"link" : "http://opskins.com",
+			"comission" : 0
 		}
 	],
 	"link_top" : 15,
-	"profit_top" : 50
+	"profit_top" : 40
 }

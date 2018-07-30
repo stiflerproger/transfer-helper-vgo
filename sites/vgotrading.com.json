@@ -4,5 +4,6 @@
 	"item" : ".item",
 	"weapon" : ".weapon",
 	"name" : ".name",
-	"wear" : ".wear"
+	"wear" : ".wear",
+	"price" : ".price"
 }

@@ -57,6 +57,9 @@ chrome.runtime.sendMessage(
 
 // ожидаем загрузки страницы. Если есть элемент item_wrapper то запускаем run
 function prerun() {
+	if (Object(config) !== config) return; // неизвестная ошибка
+	if (config.error) return; 	// загрузка плагина дала ошибку
+
 	if ($( $(config.current.item_wrapper)[ config.current.item_wrapper_index - 1 ] ).length)
 		run();
 	else
@@ -65,9 +68,7 @@ function prerun() {
 
 // инициализация плагина
 function run() {
-	if (Object(config) !== config) return; // неизвестная ошибка
 
-	if (config.error) return; 	// загрузка плагина дала ошибку
 
 	// добавим кнопки плагина на сайт
 	$('html').append(config.buttons);
@@ -76,14 +77,82 @@ function run() {
 	$( $(config.current.item_wrapper)[ config.current.item_wrapper_index - 1 ] ).on('click', '.th_opskins_link', function(event) {
 		// отключим дэф события
 		event.stopPropagation();
+	});
 
+	$('#th_scan').click(function (event){
+		// идёт ли предыдущий скан
+		if ($(this).text() != 'SCAN') return;
 
+		$(this).text("Loading..");
+
+		let self = this;
+		chrome.runtime.sendMessage({
+			id : 'get_prices',
+			site : $('#th_select').val()
+		}, function(res) {
+			$(self).text('SCAN');
+
+			if (res.result)
+				setPrices(res.items);	// успешный скан предметов
+			else
+				setPrices({}); 			// очищаем предыдущие результаты
+		});
+
+	});
+
+	// сортировки
+	$('#th_up').click(function(){
+		tinysort( $( $(config.current.item_wrapper)[ config.current.item_wrapper_index - 1 ] ).find( config.current.item ), {attr:'th_deposit', order:'asc'});
+	});
+	$('#th_down').click(function(){
+		tinysort( $( $(config.current.item_wrapper)[ config.current.item_wrapper_index - 1 ] ).find( config.current.item ), {attr:'th_withdraw', order:'asc'});
 	});
 
 	// запустить установку кнопок на предметы
 	setTimeout( function () { setButtons(); }, config.set_buttons_interval * 1000 );
+}
 
-	console.log(config);
+// устанавливает цены предметов что были просканированы
+function setPrices(items) {
+	$( $(config.current.item_wrapper)[ config.current.item_wrapper_index - 1 ] ).find( config.current.item ).each(function(){
+
+		// удаляем проценты депозиты и вывода из атрибутов
+		$(this).removeAttr('th_deposit').removeAttr('th_withdraw');
+
+		// удалим визуальное представление данных если оно было
+		$(this).find('.th_price_wrap').remove();
+
+		// посчитаем данные что нам нужны
+		let item_name = getItemName($(this).find(config.current.weapon).text(), $(this).find(config.current.name).text(), $(this).find(config.current.wear).text());
+
+		// есть ли в скане цена нужного предмета
+		if (!items[ item_name ]) {
+			return true; // continue
+		}
+
+		// получим цену предмета, на текущем сайте
+		let item_price = getPrice($(this).find(config.current.price).text());
+
+		// прибыль при депозите на сайт, и при выводе с сайта
+		let dep_profit = parseFloat( 100 - items[ item_name ].price * ( 100 + config.sites.find( site => site.name === window.location.hostname ).comission ) / item_price ).toFixed(2);
+		let wit_profit = parseFloat( -( 100 - items[ item_name ].price  * (100 - config.sites.find( site => site.name === $('#th_select').val() ).comission ) / item_price  ) ).toFixed(2);
+
+		// шаблон профита из конфига
+		let profitHtml = config.profit;
+
+		profitHtml = profitHtml
+			.replace('${top}', config.profit_top)
+			.replace('${green}', dep_profit + "%")
+			.replace('${red}', wit_profit + "%")
+			.replace('${price}', "$" + (items[ item_name ].price / 100).toFixed(2))
+			.replace('${count}', items[ item_name ].count ? items[ item_name ].count : "");
+
+		// добавим профит к HTML
+		$(this)
+			.attr('th_deposit', dep_profit)
+			.attr('th_withdraw', wit_profit)
+			.append(profitHtml);
+	});
 }
 
 // устанавливает кнопки на предметах
@@ -121,4 +190,11 @@ function getItemName(weapon, name, wear) {
 		return weapon.trim() + " | " + name.trim() + ( wears[ wear.toLowerCase().trim() ] ? wears[ wear.toLowerCase().trim() ] : "" );
 	else
 		return weapon.trim();
+}
+
+// возвращается цена предмета в центах
+function getPrice(price) {
+	// price - цена, например: $101.84
+
+	return (price.replace('$', '')  * 100);
 }

@@ -2,7 +2,46 @@
 	position: absolute;
 	left: 0;
 }
+
 .th_opskins_link > img {
 	width: 20px !important;
 	height: 20px !important;
+}
+
+.th_price_wrap {
+	position: absolute;
+	left: 0;
+	width: 100%;
+	line-height: 10px;
+}
+
+.th_price_wrap > span {
+	display: inline-block !important;
+	width: initial !important;
+	height: initial !important;
+	text-shadow: black 0.5px 0.5px 0, black -0.5px -0.5px 0, black -0.5px 0.5px 0, black 0.5px -0.5px 0;
+    font-weight: bold;
+    text-shadow: 3px 1px 2px black;
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	color: white;
+}
+
+.th_price_wrap .th_green {
+	color: #a7ff92;
+}
+
+.th_price_wrap .th_green:hover {
+	color: rgb(61, 216, 0);
+}
+
+.th_price_wrap .th_red {
+	color: #ffacac;
+}
+
+.th_price_wrap .th_red:hover {
+	color: rgb(251, 40, 40);
+}
+
+.th_price_wrap .th_count {
+	color: #9eb2ff;
 }

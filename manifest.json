@@ -22,7 +22,7 @@
 	"content_scripts" : [
 		{
 			"matches": ["*://*/*"],
-			"js": ["js/jQuery.js", "content.js"],
+			"js": ["js/jQuery.js", "js/tinysort.min.js", "content.js"],
 			"css": [ "css/style.css" ],
 			"run_at": "document_end"
 		}
@@ -35,6 +35,7 @@
 		"/css/*",
 		"/icons/*"
 	],
+	"content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
     "browser_action": {
         "default_title": "TRANSFER HELPER",
         "default_icon": "icons/logo.png",
