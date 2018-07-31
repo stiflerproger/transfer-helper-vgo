@@ -2,43 +2,6 @@
 
 var config = {};
 var link = "https://ref.opskins.win/aff_c?offer_id=2&aff_id=1138&url_id=49&aff_sub=${item}&aff_sub2=1912_1";
-var wears = {
-	// Прямо с завода
-	"fn" : " (Factory New)",
-	"(fn)" : " (Factory New)",
-	"factory new" : " (Factory New)",
-	"(factory new)" : " (Factory New)",
-
-	// Немного поношенное
-	"mw" : " (Minimal Wear)",
-	"(mw)" : " (Minimal Wear)",
-	"minimal wear" : " (Minimal Wear)",
-	"(minimal wear)" : " (Minimal Wear)",
-
-	// После полевых испытаний
-	"ft" : " (Field-Tested)",
-	"(ft)" : " (Field-Tested)",
-	"field-tested" : " (Field-Tested)",
-	"(field-tested)" : " (Field-Tested)",
-	"field tested" : " (Field-Tested)",
-	"(field tested)" : " (Field-Tested)",
-
-	// Поношенное
-	"ww" : " (Well-Worn)",
-	"(ww)" : " (Well-Worn)",
-	"well-worn" : " (Well-Worn)",
-	"(well-worn)" : " (Well-Worn)",
-	"well worn" : " (Well-Worn)",
-	"(well worn)" : " (Well-Worn)",
-
-	// Закаленное в боях
-	"bs" : " (Battle-Scarred)",
-	"(bs)" : " (Battle-Scarred)",
-	"battle-scarred" : " (Battle-Scarred)",
-	"(battle-scarred)" : " (Battle-Scarred)",
-	"battle scarred" : " (Battle-Scarred)",
-	"(battle scarred)" : " (Battle-Scarred)"
-}
 
 // загрузим конфигурацию приложения
 chrome.runtime.sendMessage(
