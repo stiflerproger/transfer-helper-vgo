@@ -1,0 +1,6 @@
+{
+	"item_wrapper" : "#scroll",
+	"item_wrapper_index" : 1,
+	"item" : ".featured-item",
+	"price" : ".item-amount"
+}

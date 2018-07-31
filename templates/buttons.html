@@ -4,6 +4,7 @@
 	<!-- стили для кнопок плагина -->
 	<style>
 		#th_main_wrap {
+			font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 			position: fixed;
 			bottom: 0;
 			width: 100%;
@@ -24,23 +25,28 @@
 			background-color: white;
 			margin: 0 auto;
 		}
+		#th_select {
+			height: initial;
+		}
 	</style>
 
-	<div id="th_buttons_wrap" class="card">
-		<div id="th_buttons_header" class="card-header"><h6 class="my-0 font-weight-normal">Скрыть / Показать</h6></div>
-		<div id="th_cart_body" class="card-body" style="display: none;">
+ 	<div class="bootstrap-th">
+		<div id="th_buttons_wrap" class="card">
+			<div id="th_buttons_header" class="card-header"><h6 class="my-0 font-weight-normal">Скрыть / Показать</h6></div>
+			<div id="th_cart_body" class="card-body" style="display: none;">
 
-			<div class="btn btn-sm btn-outline-secondary" id="th_scan">SCAN</div>
-			<div class="btn btn-sm btn-outline-secondary" id="th_up">UP</div>
-			<div class="btn btn-sm btn-outline-secondary" id="th_down">DOWN</div>
+				<div class="btn btn-sm btn-outline-secondary" id="th_scan">SCAN</div>
+				<div class="btn btn-sm btn-outline-secondary" id="th_up">UP</div>
+				<div class="btn btn-sm btn-outline-secondary" id="th_down">DOWN</div>
 
-			<small class="text-muted">скан сайта:</small>
-			<select class="custom-select-sm" id="th_select">
-				<!--
-				<option> Список сайтов для скана </option>
-				-->
-				${0} <!-- Для замены в background.js -->
-			</select>
+				<small class="text-muted">скан сайта:</small>
+				<select class="custom-select-sm" id="th_select">
+					<!--
+					<option> Список сайтов для скана </option>
+					-->
+					${0} <!-- Для замены в background.js -->
+				</select>
+			</div>
 		</div>
 	</div>
 

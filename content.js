@@ -177,8 +177,11 @@ function setButtons() {
 	elements.each(function() {
 		$(this).addClass('th_added');	// чтобы предмет не выбирался повторно
 		let name = getItemName($(this));
-
-		$(this).append('<a class="th_opskins_link" target="_blank" href="' + link.replace('${item}', name) + '" style="top: ' + config.link_top + '%; left: ' + config.link_left + '%;"><img src="' + config.opskins_logo + '"></a>');
+		// на добавлять ссылки на предметы что не удалось определить
+		if (!name)
+			$(this).append('<a class="th_opskins_link"></a>');
+		else
+			$(this).append('<a class="th_opskins_link" target="_blank" href="' + link.replace('${item}', name) + '" style="top: ' + config.link_top + '%; left: ' + config.link_left + '%;"><img src="' + config.opskins_logo + '"></a>');
 	});
 
 	// запустить установку кнопок на предметы
@@ -192,7 +195,7 @@ function getItemName(element) {
 	// name - название скина, например: Dragon Lore, Poison Target
 	// wear - поношенность оружия, например: FN, (FN), Factory New, (Factory New)
 
-	let reg = new RegExp("(?:http(?:s?):\/\/files.opskins.media\/file\/vgo-img\/item\/)([a-z0-9\-]+)(?:-300.png)", 'mi');
+	let reg = new RegExp("(?:http(?:s?):\/\/files.opskins.media\/file\/vgo-img\/item\/)([a-z0-9\-]+)(?:(?:-300|-600).png)", 'mi');
 	let matches = $(element).html().match(reg);
 
 	//если есть совпадение по регулярке, то запомнить его
