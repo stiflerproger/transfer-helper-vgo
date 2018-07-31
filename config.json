@@ -3,7 +3,7 @@
 	"set_buttons_amount" : 1000,
 	"sites_path" : "/sites/",
 	"parse_path" : "/parsers/",
-	"templates_path" : "/templates/",
+	"templates_path" : "/static/templates/",
 	"sites" : [
 		{
 			"name" : "vgotrading.com",

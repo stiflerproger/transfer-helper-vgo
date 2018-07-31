@@ -57,7 +57,7 @@ async.auto({
 	// добавим статичные ссылки: на картинки
 	add_static_links : ['add_sites_to_buttons', function (res, cb) {
 		// иконка логотипа опскинса
-		config.opskins_logo = chrome.extension.getURL('icons/opskins.png');
+		config.opskins_logo = chrome.extension.getURL('static/icons/opskins.png');
 	}]
 })
 

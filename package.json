@@ -1,0 +1,24 @@
+{
+  "name": "transfer-hepler-vgo",
+  "version": "1.0.0",
+  "description": "Transfer Helper - расширение, помогающее трейдерам в поиске выгодных для обмена VGO предметов",
+  "main": "content.js",
+  "dependencies": {
+    "nedb": "^1.8.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stiflerproger/transfer-hepler-vgo.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/stiflerproger/transfer-hepler-vgo/issues"
+  },
+  "homepage": "https://github.com/stiflerproger/transfer-hepler-vgo#readme"
+}

@@ -7,11 +7,11 @@
 	"description" : "This extension will help you in finding profitable transfers",
 
 	"icons" : {
-		"16" : "icons/logo.png",
-		"32" : "icons/logo.png",
-		"48" : "icons/logo.png",
-		"64" : "icons/logo.png",
-		"128" : "icons/logo.png"
+		"16" : "static/icons/logo.png",
+		"32" : "static/icons/logo.png",
+		"48" : "static/icons/logo.png",
+		"64" : "static/icons/logo.png",
+		"128" : "static/icons/logo.png"
 	},
 
 	"permissions": [
@@ -22,23 +22,23 @@
 	"content_scripts" : [
 		{
 			"matches": ["*://*/*"],
-			"js": ["js/jQuery.js", "js/tinysort.min.js", "content.js"],
-			"css": [ "css/bootstrap-th.css", "css/style.css" ],
+			"js": ["static/js/jQuery.js", "static/js/tinysort.min.js", "content.js"],
+			"css": [ "static/css/bootstrap-th.css", "static/css/style.css" ],
 			"run_at": "document_end"
 		}
 	],
 	"background": {
-		"scripts": ["js/jQuery.js", "js/async.js", "js/background.js"]
+		"scripts": ["static/js/jQuery.js", "static/js/async.js", "static/js/background.js"]
 	},
 	"web_accessible_resources": [
-		"/js/*",
-		"/css/*",
-		"/icons/*"
+		"static/js/*",
+		"static/css/*",
+		"static/icons/*"
 	],
 	"content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
     "browser_action": {
         "default_title": "TRANSFER HELPER",
-        "default_icon": "icons/logo.png",
+        "default_icon": "static/icons/logo.png",
 		"default_popup": "popup.html"
     }
 }
