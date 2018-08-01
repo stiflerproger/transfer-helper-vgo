@@ -73,5 +73,5 @@ function runParser(path, file, callback) {
     });
 
     // подключимся к БД парсера
-    db[ file ] = new Datastore(config.database_path + file + '.db');
+    db[ file.replace('.js', '') ] = new Datastore(config.database_path + file.replace('.js', '') + '.db');
 }

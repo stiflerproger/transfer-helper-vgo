@@ -88,22 +88,54 @@ chrome.runtime.onMessage.addListener( function(message, sender, callback) {
 	// запрос на получение цен предметов
 	if (message.id == "get_prices") {
 
-		// загрузить цены
-		$.ajax({
-			type : 'GET',
-			async : false,
-			url : chrome.extension.getURL(config.parse_path + message.site + '.js'),
-			success : file => {
-				// запускаем парсер что предназначен для текущего сайта
-				eval(file);
-			},
-			error : error => {
-				return callback({
-					'result': false,
-					'message': error
-				})
-			}
-		});
+		// если в конфиге указан node парсер, то берем цены оттуда
+		if (config.sites.find(site => site.name === message.site).node_parser) {
+			// загрузить цены из node парсера с БД
+			$.ajax({
+				type : 'GET',
+				async : false,
+				url : 'http://localhost:' + config.port + '/parser/' + message.site,
+				success : result => {
+					let items = {};
+					for (let i = 0, l = result.length; i < l; i++) {
+						items[ result[i].n ] = {
+							price : result[i].p,
+							count : result[i].c || undefined
+						}
+					}
+					return callback({
+						'result': true,
+						'items': items
+					});
+				},
+				error : error => {
+					return callback({
+						'result': false,
+						'message': error
+					})
+				}
+			});
+
+		} else {
+			// загрузить цены из разового js парсера
+			$.ajax({
+				type : 'GET',
+				async : false,
+				url : chrome.extension.getURL(config.parse_path + message.site + '.js'),
+				success : file => {
+					// запускаем парсер что предназначен для текущего сайта
+					eval(file);
+				},
+				error : error => {
+					return callback({
+						'result': false,
+						'message': error
+					})
+				}
+			});
+		}
+
+
 
 	}
 

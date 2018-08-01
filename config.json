@@ -16,7 +16,8 @@
 		{
 			"name" : "trade.vgounbox.com",
 			"link" : "https://trade.vgounbox.com",
-			"comission" : 9.5
+			"comission" : 9.5,
+			"node_parser" : true
 		},
 		{
 			"name" : "opskins.com",
